@@ -1,0 +1,30 @@
+[
+    {
+        "_id": 101,
+        "type": "notification",
+        "patient_id": 2,
+        "content": "Etiam interdum, massa ac consequat pretium, lorem purus iaculis mauris",
+        "timestamp": 1619214911
+    },
+    {
+        "_id": 102,
+        "type": "notification",
+        "patient_id": 3,
+        "content": "Nullam sed arcu nulla. Duis aliquet nisl ac faucibus porttitor.",
+        "timestamp": 1619215423
+    },
+    {
+        "_id": 103,
+        "type": "notification",
+        "patient_id": 2,
+        "content": "Nullam faucibus quis magna nec pretium.",
+        "timestamp": 1619254911
+    },
+    {
+        "_id": 104,
+        "type": "notification",
+        "patient_id": 4,
+        "content": "Maecenas gravida neque justo, vel euismod lacus feugiat sit amet.",
+        "timestamp": 1619216311
+    }
+]

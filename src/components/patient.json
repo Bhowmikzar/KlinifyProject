@@ -1,0 +1,42 @@
+[
+    {
+        "_id": 1,
+        "type": "patient",
+        "patient_name": "Geralt Rivia",
+        "sex": "Male",
+        "arrival_time": 1619214543,
+        "doctor": "Dr Adam"
+    },
+    {
+        "_id": 2,
+        "type": "patient",
+        "patient_name": "Ygritte Freefolk",
+        "sex": "Female",
+        "arrival_time": 1619214623,
+        "doctor": "Dr Nelson"
+    },
+    {
+        "_id": 3,
+        "type": "patient",
+        "patient_name": "Bilbo Baggins",
+        "sex": "Male",
+        "arrival_time": 1619211443,
+        "doctor": "Dr Ava"
+    },
+    {
+        "_id": 4,
+        "type": "patient",
+        "patient_name": "Rubeus Hagrid",
+        "sex": "Male",
+        "arrival_time": 1619214325,
+        "doctor": "Dr Nelson"
+    },
+    {
+        "_id": 5,
+        "type": "patient",
+        "patient_name": "Todoroki Shoto",
+        "sex": "Male",
+        "arrival_time": 1619214826,
+        "doctor": "Dr Ava"
+    }
+]

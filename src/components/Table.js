@@ -1,0 +1,82 @@
+import React, { useMemo } from "react";
+import { useTable, useFilters, useSortBy } from "react-table";
+import patient from "./patient.json";
+import { COLUMNS } from "./columns";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import "./styles.css";
+
+export const Table = () => {
+  const columns = useMemo(() => COLUMNS, []);
+  const data = useMemo(() => patient, []);
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow
+  } = useTable(
+    {
+      columns,
+      data
+    },
+    useFilters,
+    useSortBy
+  );
+
+  return (
+    <DragDropContext>
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render("Header")}
+                  <div>{column.canFilter ? column.render("Filter") : null}</div>
+                  <span>
+                    {column.isSorted ? (column.isSortedDesc ? "🔽" : "🔼") : ""}
+                  </span>
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <Droppable droppableId="tbody">
+          {(provided) => (
+            <tbody
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              {...getTableBodyProps()}
+            >
+              {rows.map((row,i) => {
+                prepareRow(row);
+                return (
+                  <Draggable key={i} draggableId="draggable-1" index={i}>
+                    {(provided) => (
+                      <tr
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        {...row.getRowProps()}
+                      >
+                        {row.cells.map((cell) => {
+                          return (
+                            <td {...cell.getCellProps()}>
+                              {" "}
+                              {cell.render("Cell")}{" "}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    )}
+                  </Draggable>
+                );
+              })}
+            </tbody>
+          )}
+        </Droppable>
+      </table>
+    </DragDropContext>
+  );
+};
