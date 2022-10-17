@@ -49,10 +49,12 @@ export const Table = () => {
               {...provided.droppableProps}
               {...getTableBodyProps()}
             >
-              {rows.map((row,i) => {
+              {provided.placeholder}
+
+              {rows.map((row, index) => {
                 prepareRow(row);
                 return (
-                  <Draggable key={i} draggableId="draggable-1" index={i}>
+                  <Draggable key={index} draggableId={row.id} index={index}>
                     {(provided) => (
                       <tr
                         ref={provided.innerRef}
