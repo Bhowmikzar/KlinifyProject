@@ -26,7 +26,7 @@ export const Table = () => {
 
   const handleDragEnd = (results) => {
     let tempuser = [...data];
-    let slectedRow = tempuser.splic(results.source.index, 1);
+    let slectedRow = tempuser.splice(results.source.index, 1);
     tempuser.splice(results.destination.index, 0, slectedRow);
   };
 
