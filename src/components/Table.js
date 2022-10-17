@@ -27,7 +27,7 @@ export const Table = () => {
   const [patients, setPatient] = useState(patient.data);
   const handleDragEnd = (results) => {
     let tempuser = [...patients];
-    let slectedRow = tempuser.splice(results.source.index, 1);
+    let [slectedRow] = tempuser.splice(results.source.index, 1);
     tempuser.splice(results.destination.index, 0, slectedRow);
     setPatient(tempuser);
   };
