@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo , useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 import patient from "./patient.json";
 import { COLUMNS } from "./columns";
@@ -24,10 +24,12 @@ export const Table = () => {
     useSortBy
   );
 
+  const [patients, setPatient] = useState(patient.data);
   const handleDragEnd = (results) => {
-    let tempuser = [...data];
+    let tempuser = [...patients];
     let slectedRow = tempuser.splice(results.source.index, 1);
     tempuser.splice(results.destination.index, 0, slectedRow);
+    setPatient(tempuser);
   };
 
   return (
