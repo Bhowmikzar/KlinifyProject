@@ -8,6 +8,7 @@ import "./styles.css";
 export const Table = () => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => patient, []);
+  const [patients, setPatient] = useState(patient);
 
   const {
     getTableProps,
@@ -24,13 +25,20 @@ export const Table = () => {
     useSortBy
   );
 
-  const [patients, setPatient] = useState(patient.data);
   const handleDragEnd = (results) => {
+    console.log("patients", patients);
     let tempuser = [...patients];
     let [slectedRow] = tempuser.splice(results.source.index, 1);
     tempuser.splice(results.destination.index, 0, slectedRow);
     setPatient(tempuser);
   };
+  useEffect(
+    (rows) => {
+      console.log("rows", rows);
+      console.log("patients", patients);
+    },
+    [patients]
+  );
 
   return (
     <DragDropContext onDragEnd={(results) => handleDragEnd(results)}>
