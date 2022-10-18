@@ -1,4 +1,4 @@
-import React, { useMemo , useState } from "react";
+import React, { useMemo , useState , useEffect } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 import patient from "./patient.json";
 import { COLUMNS } from "./columns";
