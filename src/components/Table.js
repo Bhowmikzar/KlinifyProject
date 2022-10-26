@@ -33,11 +33,11 @@ export const Table = () => {
     setPatient(tempuser);
   };
   useEffect(
-    (rows) => {
+    () => {
       console.log("rows", rows);
       console.log("patients", patients);
     },
-    [patients]
+    [patients , rows]
   );
 
   return (
