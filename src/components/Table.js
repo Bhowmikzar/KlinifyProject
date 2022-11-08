@@ -1,4 +1,4 @@
-import React, { useMemo , useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 import patient from "./patient.json";
 import { COLUMNS } from "./columns";
@@ -8,7 +8,7 @@ import "./styles.css";
 export const Table = () => {
   const columns = useMemo(() => COLUMNS, []);
   const [patients, setPatient] = useState(patient);
-  
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -18,19 +18,26 @@ export const Table = () => {
   } = useTable(
     {
       columns,
-      data : patients
+      data: patients
     },
     useFilters,
     useSortBy
   );
-  
+
   const handleDragEnd = (results) => {
     let tempuser = [...patients];
     let [slectedRow] = tempuser.splice(results.source.index, 1);
+    if (!results.destination) {
+      results.destination = {
+        droppableId: "tbody",
+        index: patients.length
+      };
+    }
+
     tempuser.splice(results.destination.index, 0, slectedRow);
     setPatient(tempuser);
   };
-  
+
   return (
     <DragDropContext onDragEnd={(results) => handleDragEnd(results)}>
       <table {...getTableProps()}>
@@ -57,7 +64,7 @@ export const Table = () => {
               {...getTableBodyProps()}
             >
               {provided.placeholder}
-  
+
               {rows.map((row, index) => {
                 prepareRow(row);
                 return (
@@ -79,9 +86,9 @@ export const Table = () => {
                         })}
                       </tr>
                     )}
-                  </Draggable>           
-                );       
-              })}    
+                  </Draggable>
+                );
+              })}
             </tbody>
           )}
         </Droppable>
